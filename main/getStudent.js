@@ -15,15 +15,18 @@ function checkBasicInfo(str) {
 
     return true
 }
+
 function checkFormat(str) {
     return checkBasicInfo(str) && checkResultInfo(str);
 }
+
 function getCourse(course) {
     return {
         "course": course.split(":")[0],
         "score": parseInt(course.split(":")[1])
     };
 }
+
 function getCourses(courses) {
     let result = [];
 
