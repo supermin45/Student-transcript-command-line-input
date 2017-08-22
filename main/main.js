@@ -2,8 +2,11 @@ let getNumber = require('cli-interact').getNumber;
 let question = require('cli-interact').question;
 
 let getStudent = require('./getStudent');
-function addStudentInfo() {
-    return "请输入学生信息（格式：姓名, 学号, 班级, 学科: 成绩, ...），按回车提交：";
+
+const addMessage = "请输入学生信息（格式：姓名, 学号, 班级, 学科: 成绩, ...），按回车提交：";
+const wrongFormat = "请按正确的格式输入（格式：姓名, 学号, 班级, 学科: 成绩, ...）：";
+function addSuccess(student) {
+    console.log(`\n学生${student.name}的成绩被添加\n`);
 }
 function getMenu() {
     return `1. 添加学生
@@ -19,10 +22,12 @@ function main() {
     while (true) {
         switch (getNumber(getMenu())) {
             case 1:
-                let student;
-                while ((student = getStudent(question(addStudentInfo()))) === -1)
-                    ;
+                let student = getStudent(question(addMessage));
+                while (student === -1) {
+                    student = question(wrongFormat);
+                }
                 students.push(student);
+                addSuccess(student);
                 break;
             case 2:
                 console.log("显示成绩");
@@ -35,4 +40,4 @@ function main() {
     }
 }
 
-module.exports = {main, addStudentInfo};
+module.exports = main;
