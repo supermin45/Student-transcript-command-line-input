@@ -1,11 +1,11 @@
 let Student = require('./Student');
 
 function checkResultInfo(str) {
-    return str.split(",").length > 3;
+    return str.split(",").length > 4;
 }
 
 function checkBasicInfo(str) {
-    let results = str.split(",").splice(3, str.split(",").length);
+    let results = str.split(",").splice(4, str.split(",").length);
 
     for (let result of results) {
         if (result.split(":").length !== 2) {
@@ -39,14 +39,16 @@ function getCourses(courses) {
 
 function formatStudent(str) {
     let info = str.split(",");
-    let [name, no, nation] = info.splice(0, 3);
+    let [name, no, nation,klazz] = info.splice(0, 4);
     let courses = getCourses(info);
 
-    return new Student(name, no, nation, courses);
+    return new Student(name, no, nation, klazz,courses);
 }
 function getStudent(str) {
     if (checkFormat(str)) {
-        return formatStudent(str);
+        let student = formatStudent(str);
+
+        return student;
     }
 
     return -1;
