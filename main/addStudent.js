@@ -2,7 +2,7 @@
  * Created by Administrator on 2017/8/27.
  */
 'use strict'
-let Student = require("./Student");
+let Student = require("./student.js");
 function addStudent(str) {
     if (judgeInputFormat(str)) {
         let student = formatStudentInfo(str);
