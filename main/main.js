@@ -2,6 +2,7 @@
  * Created by Administrator on 2017/8/27.
  */
 'use strict'
+
 let getInputNumber = require('cli-interact').getNumber;
 let question = require('cli-interact').question;
 let addStudent = require('./addStudent');
@@ -30,7 +31,7 @@ function main() {
             case 1:
                 let student = addStudent(question(inputInformation));
                 while (student === -1) {
-                    student = question(wrongInputFormat);
+                    student = addStudent(question(wrongInputFormat));
                 }
                 students.push(student);
                 addSuccess(student);
@@ -40,6 +41,7 @@ function main() {
                 let transcript = printTranscript(students, SnoStr);
                 while (transcript === -1) {
                     SnoStr = question(inputWrongSno);
+                    transcript = printTranscript(students, SnoStr);
                 }
                 question(transcript + `\n按任意键继续选择`);
                 break;
